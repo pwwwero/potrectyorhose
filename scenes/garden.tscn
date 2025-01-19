@@ -1,0 +1,253 @@
+[gd_scene load_steps=17 format=3 uid="uid://b5u78el3hed4y"]
+
+[ext_resource type="Script" path="res://scripts/garden.gd" id="1_ert6s"]
+[ext_resource type="PackedScene" uid="uid://csrkvpgqrpjvj" path="res://scenes/hose.tscn" id="1_oflgr"]
+[ext_resource type="PackedScene" uid="uid://tucdljbxhfi8" path="res://scenes/player.tscn" id="1_u4mys"]
+[ext_resource type="PackedScene" uid="uid://dcfrh2yvjnxmw" path="res://scenes/spawner.tscn" id="4_0yh1c"]
+[ext_resource type="PackedScene" uid="uid://dqlciv0ui1820" path="res://scenes/shader.tscn" id="5_g8mcu"]
+[ext_resource type="Texture2D" uid="uid://cxbvve0rick2l" path="res://sprites/tile_flo.png" id="6_fvqhx"]
+[ext_resource type="Shader" path="res://shaders/tile_wind.gdshader" id="6_nrtho"]
+[ext_resource type="PackedScene" uid="uid://ved62dltrdu" path="res://scenes/hud.tscn" id="8_jo2bu"]
+[ext_resource type="AudioStream" uid="uid://6aadkqg6cb4q" path="res://sounds/menu.wav" id="9_n5et8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckpb4"]
+shader = ExtResource("6_nrtho")
+shader_parameter/speed = 2.5
+shader_parameter/minStrength = 0.04
+shader_parameter/maxStrength = 0.04
+shader_parameter/strengthScale = 110.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 1.0
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_honpl"]
+resource_name = "flor"
+texture = ExtResource("6_fvqhx")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_828uy"]
+sources/1 = SubResource("TileSetAtlasSource_honpl")
+
+[sub_resource type="Animation" id="Animation_akfrt"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasModulate:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasModulate:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasModulate:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_57rtn"]
+resource_name = "dia"
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.133333, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasModulate:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.52549, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasModulate:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasModulate:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5)
+}
+
+[sub_resource type="Animation" id="Animation_lhj6j"]
+resource_name = "noite"
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.776067, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasModulate:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.00155462, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasModulate:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.912713, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasModulate:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_co2a2"]
+_data = {
+"RESET": SubResource("Animation_akfrt"),
+"dia": SubResource("Animation_57rtn"),
+"noite": SubResource("Animation_lhj6j")
+}
+
+[node name="garden" type="Node2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_ert6s")
+
+[node name="Control" type="Control" parent="."]
+z_index = -4096
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = -60.0
+offset_right = 778.0
+offset_bottom = 592.0
+color = Color(0, 0.282353, 0.137255, 1)
+
+[node name="hose" parent="." instance=ExtResource("1_oflgr")]
+position = Vector2(344, 298)
+
+[node name="spawner" parent="." instance=ExtResource("4_0yh1c")]
+position = Vector2(-2, 4)
+
+[node name="player" parent="." instance=ExtResource("1_u4mys")]
+position = Vector2(344, 309)
+
+[node name="shader" parent="." instance=ExtResource("5_g8mcu")]
+z_index = 4095
+offset_left = -47.0
+offset_top = -60.0
+offset_right = 798.0
+offset_bottom = 639.0
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_ckpb4")
+tile_set = SubResource("TileSet_828uy")
+format = 2
+layer_0/tile_data = PackedInt32Array(1572879, 131073, 2, 1572878, 1, 3, 1638415, 1, 3, 1507343, 65537, 3, 1638414, 65537, 3, 1507344, 131073, 3, 1572880, 1, 3, 1638416, 1, 3, 1572877, 196609, 3, 1572881, 196609, 3, 1507345, 1, 3, 1507346, 1, 2, 1572882, 1, 3, 1638418, 1, 3, 1441808, 1, 3, 1441807, 65537, 3, 1638417, 65537, 3, 1703951, 65537, 3, 1703952, 1, 2, 1769488, 1, 3, 1703953, 131073, 3, 1507342, 131073, 3, 1835027, 196609, 3, 1769484, 196609, 3, 1441804, 196609, 3, 1376271, 196609, 3, 1245217, 1, 3, 1179681, 1, 3, 1179682, 1, 3, 1245219, 1, 3, 1310755, 131073, 2, 1310754, 1, 3, 1310753, 1, 3, 1114146, 1, 3, 1179683, 131073, 3, 1245218, 131073, 3, 1114148, 1, 3, 1114149, 1, 3, 1179686, 1, 3, 1245222, 1, 3, 1310757, 131073, 3, 1310756, 1, 3, 1376291, 1, 3, 1245220, 1, 3, 1179684, 65537, 1, 1245221, 65537, 2, 1310758, 1, 3, 1114147, 1, 3, 1048613, 1, 3, 1048614, 131073, 3, 1114150, 131073, 2, 1179685, 1, 3, 1245216, 1, 2, 1179687, 196609, 2, 1703954, 65537, 1, 1245207, 131073, 2, 1245202, 1, 3, 1245208, 1, 3, 786444, 131073, 1, 786443, 131073, 1, 720907, 131073, 1, 655371, 131073, 1, 655372, 131073, 1, 589837, 131073, 1, 655374, 131073, 1, 720910, 196609, 3, 786446, 131073, 1, 851981, 131073, 1, 851980, 131073, 1, 786442, 131073, 1, 720905, 1, 3, 655369, 131073, 1, 589834, 131073, 1, 589835, 131073, 1, 589836, 196609, 3, 720909, 65537, 3, 851979, 1, 3, 720906, 196609, 3, 655370, 65537, 3, 720908, 1, 2, 655373, 131073, 3, 786445, 131073, 1, 2162730, 65537, 1, 1769515, 65537, 1, 1638443, 65537, 1, 983082, 65537, 1, 852011, 65537, 1, 589867, 65537, 1, 524331, 65537, 1, 262187, 65537, 1, 35, 65537, 1, 24, 65537, 1, 20, 65537, 1, 15, 65537, 1, 14, 65537, 1, 196608, 65537, 1, 589824, 65537, 1, 655360, 65537, 1, 9, 65537, 1, 786432, 65537, 1, 2162689, 65537, 1, 2097152, 65537, 1, 1966080, 65537, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_co2a2")
+}
+
+[node name="HUD" parent="." instance=ExtResource("8_jo2bu")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
+stream = ExtResource("9_n5et8")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

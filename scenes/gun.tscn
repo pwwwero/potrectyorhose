@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw642qfnyr0bk"]
+
+[ext_resource type="Script" path="res://scripts/gun.gd" id="1_tm0lc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_71d65"]
+radius = 3.0
+
+[node name="gun" type="Area2D"]
+script = ExtResource("1_tm0lc")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_71d65")
+disabled = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -21)
+
+[node name="Polygon2D" type="Polygon2D" parent="Marker2D"]
+visible = false
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(0.4, 0.4)
+polygon = PackedVector2Array(-5, 0, 0, 5, 5, 0, 0, -5)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

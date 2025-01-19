@@ -1,0 +1,122 @@
+[gd_scene load_steps=11 format=3 uid="uid://csrkvpgqrpjvj"]
+
+[ext_resource type="Texture2D" uid="uid://ccmb7c7jy488f" path="res://sprites/hose.png" id="1_3ueay"]
+[ext_resource type="Script" path="res://scripts/hose.gd" id="1_e5en2"]
+[ext_resource type="Texture2D" uid="uid://dinmo2iulunvo" path="res://sprites/smoke.png" id="2_2ofe8"]
+[ext_resource type="Texture2D" uid="uid://dvqdsqk3d338j" path="res://sprites/cerca.png" id="3_7dlxb"]
+[ext_resource type="Texture2D" uid="uid://7ifyhkwjwp40" path="res://sprites/hose2.png" id="5_d3ifm"]
+[ext_resource type="Texture2D" uid="uid://car6pu3tbp4k1" path="res://sprites/hose3.png" id="6_yxkxr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnq3r"]
+size = Vector2(800, 600)
+
+[sub_resource type="Gradient" id="Gradient_o0af1"]
+colors = PackedColorArray(0.582391, 0.582391, 0.582391, 1, 1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dv0ku"]
+size = Vector2(42.5, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_seuww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3ueay")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_d3ifm")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_yxkxr")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[node name="hose" type="Node2D"]
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+script = ExtResource("1_e5en2")
+metadata/_edit_group_ = true
+
+[node name="hose" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hose"]
+shape = SubResource("RectangleShape2D_gnq3r")
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="sprites"]
+modulate = Color(1, 1, 1, 0.454902)
+z_index = 100
+position = Vector2(5, -41.5)
+amount = 5
+lifetime = 10.0
+speed_scale = 0.5
+explosiveness = 0.4
+randomness = 1.0
+fixed_fps = 60
+fract_delta = false
+draw_order = 1
+texture = ExtResource("2_2ofe8")
+direction = Vector2(0, -1)
+gravity = Vector2(1, -5)
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_o0af1")
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+anim_offset_max = 0.0541
+
+[node name="Cerca" type="Sprite2D" parent="sprites"]
+position = Vector2(-30, 0)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_7dlxb")
+
+[node name="Cerca2" type="Sprite2D" parent="sprites"]
+position = Vector2(26.5, 0)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_7dlxb")
+flip_h = true
+
+[node name="Hose" type="Sprite2D" parent="sprites"]
+visible = false
+z_index = 10
+position = Vector2(-1, -29)
+texture = ExtResource("1_3ueay")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 3)
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
+polygon = PackedVector2Array(0, -0.5, 18.5, -1, 15.5, -19, 15, -30.5, -20.5, -29, -21, -14.5, -18, -2, -8.5, -2)
+
+[node name="hitbox" type="Area2D" parent="."]
+z_index = 4096
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-0.75, -12)
+shape = SubResource("RectangleShape2D_dv0ku")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.5, -26.5)
+sprite_frames = SubResource("SpriteFrames_seuww")
+animation = &"3"
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

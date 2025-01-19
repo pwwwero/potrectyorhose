@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqlciv0ui1820"]
+
+[ext_resource type="Shader" path="res://shaders/pixalate.gdshader" id="1_wcae8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qs6tn"]
+shader = ExtResource("1_wcae8")
+shader_parameter/size_x = 0.005
+shader_parameter/size_y = 0.005
+
+[node name="shader" type="ColorRect"]
+material = SubResource("ShaderMaterial_qs6tn")
+offset_right = 700.0
+offset_bottom = 549.0

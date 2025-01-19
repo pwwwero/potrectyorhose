@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://btpxrs4xv6jue"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_bd5k2"]
+[ext_resource type="Texture2D" uid="uid://nb2arlqevw0n" path="res://sprites/icon0.png" id="1_gvvwm"]
+[ext_resource type="PackedScene" uid="uid://dqlciv0ui1820" path="res://scenes/shader.tscn" id="3_pe06e"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_bd5k2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.325
+anchor_top = -0.525
+anchor_right = -0.325
+anchor_bottom = -0.525
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(20.0319, 16.887)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon0" type="Sprite2D" parent="."]
+position = Vector2(352, 295)
+scale = Vector2(3.06087, 3.26923)
+texture = ExtResource("1_gvvwm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+
+[node name="shader" parent="." instance=ExtResource("3_pe06e")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

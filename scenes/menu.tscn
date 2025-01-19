@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjj0lppa5taec"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_dp5vd"]
+[ext_resource type="FontFile" uid="uid://2lp6xig6fljk" path="res://fonts/windows_command_prompt.ttf" id="2_35p61"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_dp5vd")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 707.0
+offset_bottom = 550.0
+color = Color(0, 0, 0, 1)
+
+[node name="ButtonPlay" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 317.0
+offset_top = 255.0
+offset_right = 399.0
+offset_bottom = 286.0
+theme_override_fonts/font = ExtResource("2_35p61")
+theme_override_font_sizes/font_size = 25
+text = "JOGAR"
+flat = true
+
+[node name="ButtonQuit" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 317.0
+offset_top = 289.0
+offset_right = 399.0
+offset_bottom = 313.0
+theme_override_fonts/font = ExtResource("2_35p61")
+text = "SAIR"
+flat = true
+
+[connection signal="pressed" from="Control/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="Control/ButtonQuit" to="." method="_on_button_quit_pressed"]

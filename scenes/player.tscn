@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://tucdljbxhfi8"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_gshpi"]
+[ext_resource type="Script" path="res://scripts/Camera2D.gd" id="2_6yn15"]
+[ext_resource type="Texture2D" uid="uid://cot8lnie71e5d" path="res://sprites/player1.png" id="2_055gl"]
+[ext_resource type="Texture2D" uid="uid://cblxr6a0t56qj" path="res://sprites/player2.png" id="3_iaa8a"]
+[ext_resource type="PackedScene" uid="uid://eyco7iykk2yn" path="res://scenes/punch.tscn" id="4_iadst"]
+[ext_resource type="PackedScene" uid="uid://dsox6dgow8lft" path="res://scenes/dev_ui.tscn" id="5_g4hpw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t3c8e"]
+radius = 6.68539
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8c0af"]
+size = Vector2(17, 17.25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52ilo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_055gl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iaa8a")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="player" type="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_gshpi")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.43051e-06, 0.5)
+shape = SubResource("CircleShape2D_t3c8e")
+
+[node name="playerArea" type="Area2D" parent="."]
+z_index = 1
+position = Vector2(0.499999, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerArea"]
+position = Vector2(-0.499998, -0.208333)
+shape = SubResource("RectangleShape2D_8c0af")
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+position = Vector2(0.499999, 2.5)
+ignore_rotation = false
+zoom = Vector2(1.5, 1.5)
+limit_left = 0
+limit_top = 0
+limit_right = 700
+limit_bottom = 550
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 20.0
+script = ExtResource("2_6yn15")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(11.3333, -1.16667)
+sprite_frames = SubResource("SpriteFrames_52ilo")
+animation = &"walk"
+autoplay = "walk"
+offset = Vector2(-10.8333, 1.66667)
+
+[node name="punch" parent="." instance=ExtResource("4_iadst")]
+
+[node name="dev_ui" parent="." instance=ExtResource("5_g4hpw")]
+visible = false
+
+[connection signal="area_entered" from="playerArea" to="." method="_on_player_area_area_entered"]

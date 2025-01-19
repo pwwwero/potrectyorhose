@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://eyco7iykk2yn"]
+
+[ext_resource type="Script" path="res://punch.gd" id="1_bua4e"]
+[ext_resource type="Texture2D" uid="uid://tdajnxupcn23" path="res://sprites/punchPlayer1.png" id="2_kwxl7"]
+[ext_resource type="Texture2D" uid="uid://cc77hmcn61kiw" path="res://sprites/punchPlayer2.png" id="3_sbtsv"]
+[ext_resource type="Texture2D" uid="uid://duf5cgn2h7bqo" path="res://sprites/punchPlayer3.png" id="4_roqmd"]
+[ext_resource type="Texture2D" uid="uid://2g02uuy6b77j" path="res://sprites/punchPlayer4.png" id="5_ohftr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2xbt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_022u6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ohftr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kwxl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sbtsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_roqmd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ohftr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="punch" type="Area2D"]
+z_index = 100
+script = ExtResource("1_bua4e")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_e2xbt")
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(22, 0)
+sprite_frames = SubResource("SpriteFrames_022u6")
+frame_progress = 0.666543
+
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

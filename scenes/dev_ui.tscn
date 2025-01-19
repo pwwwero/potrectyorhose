@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsox6dgow8lft"]
+
+[ext_resource type="Script" path="res://scripts/dev_ui.gd" id="1_bjbm6"]
+[ext_resource type="FontFile" uid="uid://2lp6xig6fljk" path="res://fonts/windows_command_prompt.ttf" id="2_gw1th"]
+
+[node name="dev_ui" type="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_bjbm6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+offset_top = 74.0
+offset_right = 175.0
+offset_bottom = 472.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label4" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label5" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label6" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label7" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label8" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label9" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label10" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label11" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label12" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label13" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "
+
+[node name="Label14" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gw1th")
+text = "text1 "

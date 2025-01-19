@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://p8pinae8qglo"]
+
+[ext_resource type="Script" path="res://scripts/scr_buttons/+new_raio.gd" id="1_bsnid"]
+[ext_resource type="FontFile" uid="uid://2lp6xig6fljk" path="res://fonts/windows_command_prompt.ttf" id="2_2euf3"]
+[ext_resource type="AudioStream" uid="uid://vwbatgl43v2y" path="res://sounds/Blip_Select4.wav" id="3_tims2"]
+[ext_resource type="AudioStream" uid="uid://ytua1fua0xg3" path="res://sounds/Powerup4.wav" id="4_y24kr"]
+
+[node name="+new_raio" type="Button"]
+offset_right = 233.0
+offset_bottom = 298.0
+script = ExtResource("1_bsnid")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.1
+one_shot = true
+autostart = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 199.0
+offset_right = 218.0
+offset_bottom = 251.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_2euf3")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[shake]                +
+raios shows de bola"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tims2")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_y24kr")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D2" to="." method="_on_audio_stream_player_2d_2_finished"]

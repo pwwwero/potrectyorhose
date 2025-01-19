@@ -1,0 +1,160 @@
+[gd_scene load_steps=11 format=3 uid="uid://dx6148pjei8w2"]
+
+[ext_resource type="Script" path="res://scripts/eny_1.gd" id="1_5ud0p"]
+[ext_resource type="Texture2D" uid="uid://s8cfnnhm3nby" path="res://sprites/e1.png" id="2_kbry1"]
+[ext_resource type="Texture2D" uid="uid://cuqmvd72g2q6q" path="res://sprites/e2.png" id="3_bkhpe"]
+[ext_resource type="AudioStream" uid="uid://dppyds6c4jrm3" path="res://sounds/Hit_eny.wav" id="4_jge4s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0nwmi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4joke"]
+size = Vector2(34, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ry7f3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kbry1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bkhpe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_afvt2"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.1875, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.9375, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_84t3l"]
+resource_name = "die"
+length = 0.5
+step = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.497)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-15, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.497)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(2.1875, -0.25, 0, 0.25, 0, 2.188, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.497)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.9375, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.497)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epq01"]
+_data = {
+"RESET": SubResource("Animation_afvt2"),
+"die": SubResource("Animation_84t3l")
+}
+
+[node name="eny_1" type="CharacterBody2D" groups=["eny"]]
+safe_margin = 5.0
+script = ExtResource("1_5ud0p")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_0nwmi")
+
+[node name="enyArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enyArea"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_4joke")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -15)
+scale = Vector2(2.1875, 1.9375)
+sprite_frames = SubResource("SpriteFrames_ry7f3")
+autoplay = "default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jge4s")
+volume_db = 0.01
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_epq01")
+}
+
+[connection signal="area_entered" from="enyArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

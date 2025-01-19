@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch0pov4tatxpa"]
+
+[ext_resource type="Texture2D" uid="uid://dugugspw7jtr3" path="res://sprites/particle.png" id="1_mhoa1"]
+[ext_resource type="Script" path="res://CPUParticles2D.gd" id="2_tfqva"]
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+z_index = -1
+position = Vector2(83, 55)
+emitting = false
+amount = 3
+lifetime = 2.0
+speed_scale = 5.0
+explosiveness = 0.15
+randomness = 0.72
+texture = ExtResource("1_mhoa1")
+gravity = Vector2(-1, 1)
+scale_amount_min = 0.5
+scale_amount_max = 2.5
+script = ExtResource("2_tfqva")

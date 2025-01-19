@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0ndabxbkg1lg"]
+
+[ext_resource type="Texture2D" uid="uid://mky1tegilgno" path="res://sprites/spr_buttons/+PUNCH_SIZE.png" id="1_pd44h"]
+[ext_resource type="Script" path="res://scripts/scr_buttons/+size_punch.gd" id="2_cbfw2"]
+[ext_resource type="FontFile" uid="uid://2lp6xig6fljk" path="res://fonts/windows_command_prompt.ttf" id="3_3q5ya"]
+[ext_resource type="AudioStream" uid="uid://vwbatgl43v2y" path="res://sounds/Blip_Select4.wav" id="4_wgmwg"]
+[ext_resource type="AudioStream" uid="uid://ytua1fua0xg3" path="res://sounds/Powerup4.wav" id="5_1f1qm"]
+
+[node name="+size_punch" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 0
+icon = ExtResource("1_pd44h")
+flat = true
+script = ExtResource("2_cbfw2")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.1
+one_shot = true
+autostart = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 9.0
+offset_top = 191.0
+offset_right = 236.0
+offset_bottom = 255.0
+theme_override_fonts/normal_font = ExtResource("3_3q5ya")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[shake]                  +
+tamanho do ataque"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wgmwg")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_1f1qm")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D2" to="." method="_on_audio_stream_player_2d_2_finished"]
